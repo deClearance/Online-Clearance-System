@@ -11,9 +11,11 @@ if (isset($_POST['fullname']) && isset($_POST['password'])
 	   $data = htmlspecialchars($data);
 	   return $data;
 	}
-
+	
 	$uname = validate($_POST['fullname']);
 	$pass = validate($_POST['password']);
+
+	$hash = password_hash(pass, PASSWORD_DEFAULT)
 
 	$re_pass = validate($_POST['password_confirm']);
 	$role = validate($_POST['role']);
