@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2021 at 11:01 PM
+-- Generation Time: Aug 26, 2021 at 03:29 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -46,7 +46,11 @@ CREATE TABLE `clearance_list` (
 --
 
 INSERT INTO `clearance_list` (`id`, `name`, `description`, `clearance_owner`, `in_charge`, `office`, `material`, `completed`, `approved`, `date_created`) VALUES
-(6, 'yona', 'booook', 9, 10, 1, 6, 1, 1, '2021-08-24 20:23:24');
+(6, 'yona', 'booook', 9, 10, 1, 6, 1, 1, '2021-08-24 20:23:24'),
+(8, 'opop', 'klk', 8, 10, 1, 2, 0, 0, '2021-08-25 16:39:04'),
+(9, '3131', 'efs', 8, 10, 1, 2, 0, 0, '2021-08-25 16:49:20'),
+(10, 'dada', 'ofisf', 9, 10, 1, 6, 0, 1, '2021-08-25 19:04:22'),
+(11, 'fasfaf', 'gdg', 8, 10, 1, 2, 0, 0, '2021-08-26 13:27:49');
 
 -- --------------------------------------------------------
 
@@ -82,7 +86,11 @@ CREATE TABLE `feedbacks` (
 
 INSERT INTO `feedbacks` (`id`, `to_office`, `from_user`, `content`, `date`) VALUES
 (5, 3, 10, 'how to make it simple', '2021-08-24 20:25:40'),
-(6, 3, 11, 'dsasdda', '2021-08-24 20:35:24');
+(6, 3, 11, 'dsasdda', '2021-08-24 20:35:24'),
+(7, 3, 10, 'opop\r\n', '2021-08-25 16:25:03'),
+(8, 1, 8, 'jkj', '2021-08-25 16:26:44'),
+(9, 1, 10, 'iipopoip', '2021-08-25 16:39:31'),
+(10, 1, 13, 'boom', '2021-08-25 19:20:57');
 
 -- --------------------------------------------------------
 
@@ -105,10 +113,11 @@ CREATE TABLE `material` (
 
 INSERT INTO `material` (`id`, `name`, `in_charge`, `available_quantity`, `description`, `date`) VALUES
 (2, 'Shark', 3, 7, 'AI memehir', '2021-08-23 05:29:02'),
-(3, 'laptop', 1, 10, 'dadafaf', '2021-08-23 06:08:02'),
-(4, 'bag', 1, 46, 'pc bags', '2021-08-23 06:41:57'),
 (5, 'id list', 1, 45, 'studentsid', '2021-08-24 08:16:56'),
-(6, 'book', 1, 23, 'bookkkkkk', '2021-08-24 20:22:40');
+(6, 'book', 1, 23, 'bookkkkkk', '2021-08-24 20:22:40'),
+(7, 'klkry', 1, 3535, 'm,mj,ytj', '2021-08-25 16:23:29'),
+(8, 'opo', 1, 90, 'jkj', '2021-08-25 16:39:13'),
+(9, 'opop', 1, 909, 'pop', '2021-08-25 16:39:48');
 
 -- --------------------------------------------------------
 
@@ -129,7 +138,7 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`id`, `to_user`, `date`, `content`, `sender`) VALUES
-(10, 9, '2021-08-24 20:25:04', 'hey there', 1);
+(12, 10, '2021-08-25 18:07:32', 'ljljafaf', 9);
 
 -- --------------------------------------------------------
 
@@ -171,7 +180,8 @@ INSERT INTO `role` (`id`, `user_type`, `work_place`) VALUES
 (1, 'student', 1),
 (2, 'Admin', 1),
 (3, 'superAdmin', 1),
-(4, 'other', 1);
+(4, 'other', 1),
+(5, 'opeowr', 1);
 
 -- --------------------------------------------------------
 
@@ -187,6 +197,13 @@ CREATE TABLE `todos` (
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `todos`
+--
+
+INSERT INTO `todos` (`office`, `incharge`, `content`, `completed`, `date`, `id`) VALUES
+(1, 8, 'dont forget to approve miki', 1, '2021-08-25 19:13:01', 9);
 
 -- --------------------------------------------------------
 
@@ -212,7 +229,9 @@ INSERT INTO `users` (`id`, `full_name`, `role`, `phone`, `password`, `office`, `
 (8, 'biruk', 3, '0921313', '$2y$10$WiSaLvd9gvmwFYsq.7yxTufIyjNnUjiMSprX1afbMuHi9qISWKQO.', 1, 'student'),
 (9, 'yona', 2, '09831313', '$2y$10$mTNfFjr.0vYTUWgAdOqTCusr2WIjLBJ.1jM/7tDUJRjlQiBx5lwZq', 3, 'student'),
 (10, 'esrael', 2, '0983131363', '$2y$10$tQtCVoos9x7GAjbrRAZcK.g3EGMYHP1F/A9plwqtyv8v3TnCnLUtK', 1, 'worker'),
-(11, 'abebe', 1, '42424', '$2y$10$i8aBnRkp0C.VelU/z8I1euRKP1G8wJclyjQB.Z32/0wWzppGpjSCe', 1, 'Mono');
+(11, 'abebe', 1, '42424', '$2y$10$i8aBnRkp0C.VelU/z8I1euRKP1G8wJclyjQB.Z32/0wWzppGpjSCe', 1, 'Mono'),
+(12, 'miraj', 5, '424', '$2y$10$b/OU.tkqZvozf5N6hbFJLuRQxlSJVO9ow0AcmsiqR5V6w0aYrRnpO', 3, 'mir'),
+(13, 'nati', 1, '09424245', '$2y$10$nTJYv0L09.bX27Ee/YG63OiavmotFMkmXOgtjX39PGYz3S7mwtGa6', 3, 'temar');
 
 -- --------------------------------------------------------
 
@@ -276,8 +295,8 @@ ALTER TABLE `material`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `sender` (`sender`),
-  ADD KEY `to_user` (`to_user`);
+  ADD KEY `to_user` (`to_user`),
+  ADD KEY `sender` (`sender`);
 
 --
 -- Indexes for table `office`
@@ -322,7 +341,7 @@ ALTER TABLE `work_place`
 -- AUTO_INCREMENT for table `clearance_list`
 --
 ALTER TABLE `clearance_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `clerance_request`
@@ -334,19 +353,19 @@ ALTER TABLE `clerance_request`
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `office`
@@ -358,19 +377,19 @@ ALTER TABLE `office`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `todos`
 --
 ALTER TABLE `todos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `work_place`
@@ -415,8 +434,8 @@ ALTER TABLE `material`
 -- Constraints for table `message`
 --
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`sender`) REFERENCES `office` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`to_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`to_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`sender`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `role`
