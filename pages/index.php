@@ -4,6 +4,8 @@ include "../db.inc.php";
 
 session_start();
 
+$identifier = "is_home";
+
 if (!isset($_SESSION['id'])) {
     header("Location:../login.php?error=Login Here First!");
 } else {
@@ -201,7 +203,7 @@ font-size: 16px;">
                             <a href="./addClerance.php"><i class="fa fa-desktop fa-3x"></i>Add Clearances</a>
                         </li>
                         <li>
-                            <a href="./index.php"><i class="fa fa-bar-chart-o fa-3x"></i> View Clearance Details</a>
+                            <a href="./index.php#remaining-clearance"><i class="fa fa-bar-chart-o fa-3x"></i> View Clearance Details</a>
                         </li>
                         <li>
                             <a href="./index.php"><i class="fa fa-table fa-3x"></i>Update Clearances</a>
@@ -261,7 +263,7 @@ font-size: 16px;">
                     <!-- /. ROW  -->
                     <hr />
                     <!-- Admins Only -->
-                    <?php if($_SESSION['role'] ==3 || $_SESSION['role'] == 2) {?>
+                    <?php if($_SESSION['role'] == 3 || $_SESSION['role'] == 2) {?>
 
                     <div class="row">
                         <div class="col-md-3 col-sm-6 col-xs-6">
@@ -580,7 +582,7 @@ font-size: 16px;">
 
                     <?php if($_SESSION['role'] ==3 || $_SESSION['role'] == 2) {?>
 
-
+                        <section id="remaining-clearance">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 Remaining Clerances
@@ -733,16 +735,18 @@ font-size: 16px;">
                                         </div>
                                     </div>
                                 </div>
+                            
                             <?php } ?>
                             <!--  -->
 
 
                             <!--  -->
 
-
+                            </section>
                             </div>
 
                         </div>
+                                
                     </div><?php }?>
                     <!-- Admins Only -->
                 </div>

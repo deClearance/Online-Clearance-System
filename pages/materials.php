@@ -4,6 +4,8 @@ include "../db.inc.php";
 
 session_start();
 
+$identifier = "is_material";
+
 if (!isset($_SESSION['id'])) {
     header("Location:../login.php?error=Login Here First!");
 }if($_SESSION['role'] ==2 || $_SESSION['role']==3){
@@ -105,7 +107,7 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
 
 
                         <li>
-                            <a class="active-menu" href="./index.php"><i class="fa fa-dashboard fa-3x"></i>Home</a>
+                            <a href="./index.php"><i class="fa fa-dashboard fa-3x"></i>Home</a>
                         </li>
                         <!-- Admins Only -->
                         <?php if($_SESSION['role'] ==3 || $_SESSION['role'] == 2) {?>
@@ -121,7 +123,7 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
                         </li>
                         
                         <li>
-                            <a href="./materials.php"><i class="fa fa-square-o fa-3x"></i> Available Materials</a>
+                            <a class="active-menu" href="./materials.php"><i class="fa fa-square-o fa-3x"></i> Available Materials</a>
                         </li><?php }?>
                         <!-- Admins Only -->
 
@@ -195,21 +197,20 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
                                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                                     $count += 1;
                                                             ?>
-
-                                                                    <tr>
-                                                                        <td><?php echo $count; ?></td>
-                                                                        <td><?php echo $row['name'] ?></td>
-                                                                        <td><?php echo $row['available_quantity'] ?></td>
-                                                                        <td><?php echo $_SESSION['office'] . ' office' ?></td>
-                                                                        <td><?php echo $row['date'] ?></td>
-                                                                        <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-                                                                        <input type="hidden" name="name" value="<?php echo $row['name'] ?>">
-                                                                        <input type="hidden" name="quantity" value="<?php echo $row['available_quantity'] ?>">
-                                                                        <input type="hidden" name="office" value="<?php echo $row['office'] ?>">
-                                                                        <input type="hidden" name="desc" value="<?php echo $row['description'] ?>">
-                                                                        <input type="hidden" name="dt" value="<?php echo $row['date'] ?>">
-                                                                        <td><a href="./updateMaterial.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;" name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a><button name="view_detail_1" type="submit" class="btn btn-primary"><i class="fa fa-edit "></i> View Detail</button> <button name="delete_m" type="submit" class="btn btn-danger"><i class="fa fa-edit "></i>delete</button> </td>
-                                                                    </tr>
+                                                                <tr>
+                                                                    <td><?php echo $count; ?></td>
+                                                                    <td><?php echo $row['name'] ?></td>
+                                                                    <td><?php echo $row['available_quantity'] ?></td>
+                                                                    <td><?php echo $_SESSION['office'] . ' office' ?></td>
+                                                                    <td><?php echo $row['date'] ?></td>
+                                                                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                                                                    <input type="hidden" name="name" value="<?php echo $row['name'] ?>">
+                                                                    <input type="hidden" name="quantity" value="<?php echo $row['available_quantity'] ?>">
+                                                                    <input type="hidden" name="office" value="<?php echo $row['office'] ?>">
+                                                                    <input type="hidden" name="desc" value="<?php echo $row['description'] ?>">
+                                                                    <input type="hidden" name="dt" value="<?php echo $row['date'] ?>">
+                                                                    <td><a href="./updateMaterial.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;" name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a><button name="view_detail_1" type="submit" class="btn btn-primary"><i class="fa fa-edit "></i> View Detail</button> <button name="delete_m" type="submit" class="btn btn-danger"><i class="fa fa-edit "></i>delete</button> </td>
+                                                                </tr>
                                                             <?php }
                                                             } ?>
 

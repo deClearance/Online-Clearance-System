@@ -4,6 +4,8 @@ include "../db.inc.php";
 
 session_start();
 
+$identifier = "is_feedback";
+
 if (!isset($_SESSION['id'])) {
     header("Location:../login.php?error=Login Here First!");
 } else {
@@ -102,7 +104,7 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
 
 
                         <li>
-                            <a class="active-menu" href="./index.php"><i class="fa fa-dashboard fa-3x"></i>Home</a>
+                            <a  href="./index.php"><i class="fa fa-dashboard fa-3x"></i>Home</a>
                         </li>
                         <!-- Admins Only -->
                         <?php if($_SESSION['role'] ==3 || $_SESSION['role'] == 2) {?>
@@ -123,7 +125,7 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
                         <!-- Admins Only -->
 
                         <li>
-                            <a href="./sendFeedback.php"><i class="fa fa-qrcode fa-3x"></i>sendFeedback</a>
+                            <a class="active-menu" href="./sendFeedback.php"><i class="fa fa-qrcode fa-3x"></i>sendFeedback</a>
                         </li>
                        
                       

@@ -4,6 +4,8 @@ include "../db.inc.php";
 
 session_start();
 
+$identifier = "is_updateClearance";
+
 if (!isset($_SESSION['id'])) {
     header("Location:../login.php?error=Login Here First!");
 }if($_SESSION['role'] ==2 || $_SESSION['role']==3){
@@ -120,7 +122,7 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
 
 
                         <li>
-                            <a class="active-menu" href="./index.php"><i class="fa fa-dashboard fa-3x"></i>Home</a>
+                            <a href="./index.php"><i class="fa fa-dashboard fa-3x"></i>Home</a>
                         </li>
                         <!-- Admins Only -->
                         <?php if($_SESSION['role'] ==3 || $_SESSION['role'] == 2) {?>
@@ -132,7 +134,7 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
                             <a href="./index.php"><i class="fa fa-bar-chart-o fa-3x"></i> View Clearance Details</a>
                         </li>
                         <li>
-                            <a href="./index.php"><i class="fa fa-table fa-3x"></i>Update Clearances</a>
+                            <a class="active-menu" href="./index.php"><i class="fa fa-table fa-3x"></i>Update Clearances</a>
                         </li>
                         
                         <li>
