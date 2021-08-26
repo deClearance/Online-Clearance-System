@@ -6,12 +6,12 @@
     $desc = $_POST['mess'];
     $office= $_POST['office'];
     $us = $_SESSION['id'];
-
+    echo $desc;
     // print_r($desc);
     if (empty($desc) || empty($office)) {
         header("Location:../pages/sendFeedback.php?message=Please Fill Empty Fields First Please!");
     } else {
-        print_r($in_charge);
+        // print_r($in_charge);
         $sql = "INSERT INTO `feedbacks` (`to_office`, `from_user`, `content`) 
         VALUES ($office, $us, '$desc')";
         $result = mysqli_query($conn, $sql);
