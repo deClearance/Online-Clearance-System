@@ -13,6 +13,11 @@
     GENERAL  STYLES    
     =============================================*/
 
+:root{
+    --theme_color: #29C48E;
+    --first_color: #C90000;
+}
+
 *{
     scroll-behavior: smooth;
 }
@@ -212,7 +217,7 @@ max-width:170px;
 
 .navbar-cls-top .navbar-brand {
 	color: #fff;
-background: #C90000;
+background: var(--theme_color);
 width: 260px;
 text-align: center;
 height: 60px;
@@ -220,7 +225,7 @@ font-size: 30px;
 font-weight: 700;
 }
 .active-menu {
-    background-color:#C90000!important;
+    background-color:var(--theme_color)!important;
 }
 
 .arrow {
@@ -316,7 +321,7 @@ font-weight: 700;
 }
 .navbar-cls-top .navbar-brand:hover {
 
-background: #C90000;
+background: var(--theme_color);
 color:#fff;
 
 }
