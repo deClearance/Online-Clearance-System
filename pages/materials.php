@@ -2,6 +2,8 @@
 
 include "../db.inc.php";
 
+$identifier = "is_material";
+
 session_start();
 
 if (!isset($_SESSION['id'])) {
@@ -176,7 +178,7 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
                                                                         <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                                                                         <input type="hidden" name="name" value="<?php echo $row['name'] ?>">
                                                                         <input type="hidden" name="quantity" value="<?php echo $row['available_quantity'] ?>">
-                                                                        <input type="hidden" name="office" value="<?php echo $row['office'] ?>">
+                                                                        <input type="hidden" name="office" value="<?php echo $office ?>">
                                                                         <input type="hidden" name="desc" value="<?php echo $row['description'] ?>">
                                                                         <input type="hidden" name="dt" value="<?php echo $row['date'] ?>">
                                                                         <td><a href="./updateMaterial.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;" name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a><button name="view_detail_1" type="submit" class="btn btn-primary"><i class="fa fa-edit "></i> View Detail</button> <button name="delete_m" type="submit" class="btn btn-danger"><i class="fa fa-edit "></i>delete</button> </td>
