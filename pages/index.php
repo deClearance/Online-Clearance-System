@@ -27,29 +27,24 @@ if (!isset($_SESSION['id'])) {
                 <div id="page-inner">
                     <div class="row">
                         <div class="col-md-7">
-                            <h2>Admin
-                                <?php echo $_SESSION['office'] . '   '  ?> Dashboard</h2>
-                            <h5>Welcome
-                                <?php echo $_SESSION['userName'] ?> , Love to see you back. </h5>
+                            <h2>Admin <?php echo $_SESSION['office'] . '   '  ?> Dashboard</h2>
+                            <!-- <h5>Welcome <?php echo $_SESSION['userName'] ?> , Love to see you back. </h5> -->
                         </div>
                         <div class="col-sm-1" style="margin-top: 15px;">
                             <button type="button" class="btn btn-info btn-circle">
                                 <h1 style="color:#fff; font-size:20px; margin:0;font-weight:700;"> 
-                                <?php
-                                    $m_id = $_SESSION['id'];
-                                    $sql = "SELECT * FROM message where to_user = $m_id";
-                                    $result = mysqli_query($conn, $sql);
-                                    echo $result->num_rows;
-                                ?>
+                                    <?php
+                                        $m_id = $_SESSION['id'];
+                                        $sql = "SELECT * FROM message where to_user = $m_id";
+                                        $result = mysqli_query($conn, $sql);
+                                        echo $result->num_rows;
+                                    ?>
                                 </h1>
-
                             </button>
                         </div>
                         <div class="col-md-1">
                             <h2>Messages</h2>
-
                         </div>
-
                     </div>
 
                     <?php if (isset($_GET['error'])) { ?>
@@ -75,14 +70,11 @@ if (!isset($_SESSION['id'])) {
                                 <div class="text-box">
                                     <p class="main-text">
                                         <?php
-                                                            $my_of = $_SESSION['office_id'];
-                                                            $sql = "SELECT * FROM `feedbacks` where to_office = $my_of ";
-                                                            $result = mysqli_query($conn, $sql);
-                                                            echo $result->num_rows;
-
-
-
-                                                            ?> Review</p>
+                                        $my_of = $_SESSION['office_id'];
+                                        $sql = "SELECT * FROM `feedbacks` where to_office = $my_of ";
+                                        $result = mysqli_query($conn, $sql);
+                                        echo $result->num_rows;
+                                        ?> Review</p>
                                     <p class="text-muted">Feedbacks</p>
                                 </div>
                             </div>
@@ -95,13 +87,12 @@ if (!isset($_SESSION['id'])) {
                                 <div class="text-box">
                                     <p class="main-text">
                                         <?php
-
-                                                            $office = $_SESSION['office_id'];
-                                                            // echo $office;
-                                                            $sql = "SELECT * FROM `clearance_list` where office = $office and `approved` = 0 ";
-                                                            $result = mysqli_query($conn, $sql);
-                                                            $remaning = $result->num_rows;
-                                                            echo $remaning; ?> Clearance</p>
+                                        $office = $_SESSION['office_id'];
+                                        // echo $office;
+                                        $sql = "SELECT * FROM `clearance_list` where office = $office and `approved` = 0 ";
+                                        $result = mysqli_query($conn, $sql);
+                                        $remaning = $result->num_rows;
+                                        echo $remaning; ?> Clearance</p>
                                     <p class="text-muted">Remaining Pending</p>
                                 </div>
                             </div>
@@ -114,13 +105,10 @@ if (!isset($_SESSION['id'])) {
                                 <div class="text-box">
                                     <p class="main-text">
                                         <?php
-                                                            $sql = "SELECT * FROM `clearance_list` where office = $office and `approved` = 1 ";
-                                                            $result = mysqli_query($conn, $sql);
-                                                            echo $result->num_rows;
-
-
-
-                                                            ?> approved</p>
+                                            $sql = "SELECT * FROM `clearance_list` where office = $office and `approved` = 1 ";
+                                            $result = mysqli_query($conn, $sql);
+                                            echo $result->num_rows;
+                                        ?> approved</p>
                                     <p class="text-muted">Approved Clearances</p>
                                 </div>
                             </div>
@@ -133,11 +121,11 @@ if (!isset($_SESSION['id'])) {
                                 <div class="text-box">
                                     <p class="main-text">
                                         <?php
-                                                            $sql = "SELECT * FROM `clerance_request` where office_requested  = $office";
-                                                            $result = mysqli_query($conn, $sql);
-                                                            echo $result->num_rows;
+                                        $sql = "SELECT * FROM `clerance_request` where office_requested  = $office";
+                                        $result = mysqli_query($conn, $sql);
+                                        echo $result->num_rows;
 
-                                                            ?> Requests</p>
+                                        ?> Requests</p>
                                     <p class="text-muted">Total</p>
                                 </div>
                             </div>
@@ -159,13 +147,10 @@ if (!isset($_SESSION['id'])) {
                                 <div class="text-box">
                                     <p class="main-text">
                                         <?php
-                                                            $sql = "SELECT * FROM `clearance_list` where office = $office";
-                                                            $result = mysqli_query($conn, $sql);
-                                                            echo $result->num_rows;
-
-
-
-                                                            ?> Clearances are Available </p>
+                                        $sql = "SELECT * FROM `clearance_list` where office = $office";
+                                        $result = mysqli_query($conn, $sql);
+                                        echo $result->num_rows;
+                                        ?> Clearances are Available </p>
                                     <p class="text-muted">Add Clearances and View Details Here</p>
                                     <a href="./addClerance.php" class="btn btn-primary"><i class="fa fa-edit "></i> Add Clerances</a>
                                     <?php
@@ -175,26 +160,16 @@ if (!isset($_SESSION['id'])) {
 
                                     ?>
                                         <a href="./materials.php" class="btn btn-success"><i class="fa fa-edit "></i> View Materials</a>
-
-
-
                                         </td>
-
                                         <hr />
                                         <p class="text-muted">
-
-
-
-
-                                            </span>
+                                            <span></span>
                                         </p>
                                 </div>
                             </div>
                         </div>
-
                         <?php }?>
                         <!-- Admins Only -->
-
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="panel back-dash">
                                 <i class="fa fa-dashboard fa-3x"></i><strong> &nbsp; Todo List</strong>
@@ -224,12 +199,12 @@ if (!isset($_SESSION['id'])) {
 
                                             <p class="text-muted" style="color: #39b3d7;">
                                                 <?php
-                                                                                                if ($row['completed'] == 0) {
-                                                                                                    echo "Ongoing Task!";
-                                                                                                } else {
-                                                                                                    echo "Comleted Task!";
-                                                                                                }
-                                                                                                ?>
+                                                if ($row['completed'] == 0) {
+                                                    echo "Ongoing Task!";
+                                                } else {
+                                                    echo "Comleted Task!";
+                                                }
+                                                ?>
                                             </p>
 
                                         </div>
@@ -261,8 +236,6 @@ if (!isset($_SESSION['id'])) {
                                     </div>
                                     <?php }
                                 } ?>
-
-
 
                             </div>
 
@@ -381,8 +354,6 @@ if (!isset($_SESSION['id'])) {
                             </div>
 
                         </div>
-
-
                         <!-- Send Message -->
 
                     </div>
@@ -433,7 +404,6 @@ if (!isset($_SESSION['id'])) {
                                                             $result2 = mysqli_query($conn, $sql2);
 
                                                             $data = mysqli_fetch_assoc($result2);
-
 
                                                     ?>
                                                             <tr>
@@ -564,12 +534,7 @@ if (!isset($_SESSION['id'])) {
                                         </div>
                                     </div>
                                     <?php } ?>
-                                    <!--  -->
-
-
-                                    <!--  -->
-
-
+     
                                 </div>
 
                             </div>
@@ -619,17 +584,11 @@ if (!isset($_SESSION['id'])) {
                                                     // print_r($result);
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                         $owner = $row['clearance_owner'];
-
-
                                                         $count += 1;
                                                         $sql2 = "SELECT * FROM `users` where id = $owner ";
                                                         $result2 = mysqli_query($conn, $sql2);
 
                                                         $data = mysqli_fetch_assoc($result2);
-
-
-
-
                                                 ?>
 
                                                     <tr>
@@ -666,15 +625,12 @@ if (!isset($_SESSION['id'])) {
                                                         }
                                                 ?>"><i class="fa fa-check"></i>
                                                                 <?php
-                                                                                if ($row['completed'] == 0) {
-                                                                                    echo "Pending";
-                                                                                } else {
-                                                                                    echo "Completed";
-                                                                                }
-
-
-
-                                                                                ?>
+                                                                    if ($row['completed'] == 0) {
+                                                                        echo "Pending";
+                                                                    } else {
+                                                                        echo "Completed";
+                                                                    }
+                                                                    ?>
                                                                     </button>
                                                         </td>
                                                     </tr>
@@ -690,11 +646,6 @@ if (!isset($_SESSION['id'])) {
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
                 <?php }?>
             </div>
@@ -751,9 +702,7 @@ if (!isset($_SESSION['id'])) {
                                 if ($result->num_rows) {
 
                                     while ($row = mysqli_fetch_assoc($result)) {
-
                                 ?>
-
                                     <li class="left clearfix">
                                         <span class="chat-img pull-left">
                                                 <img src="../img/3.png" alt="User" class="img-circle" />
@@ -782,8 +731,6 @@ if (!isset($_SESSION['id'])) {
                             </ul>
                         </div>
 
-
-
                     </div>
                     <?php }?>
                     <!-- Admins Only -->
@@ -809,7 +756,6 @@ if (!isset($_SESSION['id'])) {
                                             </thead>
                                             <tbody>
                                                 <form action="" method="POST">
-
                                                     <?php
                                                     $id = $_SESSION['id'];
                                                     // echo $office;
@@ -828,12 +774,7 @@ if (!isset($_SESSION['id'])) {
                                                             $result2 = mysqli_query($conn, $sql2);
 
                                                             $data = mysqli_fetch_assoc($result2);
-
-
-
-
                                                     ?>
-
                                                         <tr>
                                                             <td>
                                                                 <?php echo $count; ?>
@@ -868,10 +809,7 @@ if (!isset($_SESSION['id'])) {
                                                 </form>
                                             </tbody>
                                         </table>
-
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -895,9 +833,7 @@ if (!isset($_SESSION['id'])) {
                                     if ($resultx->num_rows) {
 
                                         while ($rm = mysqli_fetch_assoc($resultx)) {
-
                                     ?>
-
                                         <li class="left clearfix">
                                             <span class="chat-img pull-left">
                                                     <img src="../img/3.png" alt="User" class="img-circle" />
@@ -925,9 +861,6 @@ if (!isset($_SESSION['id'])) {
 
                                 </ul>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -940,8 +873,6 @@ if (!isset($_SESSION['id'])) {
         <!-- /. PAGE WRAPPER  -->
         </div>
         <!-- /. WRAPPER  -->
-
     </body>
-
     </html>
 <?php } ?>

@@ -24,22 +24,8 @@ include "../controller/materialController.php";
 
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Admin <?php echo $_SESSION['office'] . '   '  ?> Dashboard</h2>
-                            <h5>Welcome <?php echo $_SESSION['userName'] ?> , Love to see you back. </h5>
-                        </div>    
-                    </div>
-                    <?php if (isset($_GET['error'])) { ?>
-                        <div class="message">
-                            <h5>
-                                <p class="error"><?php echo $_GET['error']; ?></p>
-                            </h5>
-                            
-                        </div>
-                    <?php } ?>
+                    <?php include './includes/notify.php'; ?>
                     <!-- here -->
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-10">

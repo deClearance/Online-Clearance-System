@@ -14,7 +14,6 @@ if($_SESSION['role'] ==2 || $_SESSION['role']==3){
 
     include "../controller/clearanceAddController.php";
 ?>
-
     <!DOCTYPE html>
     <html >
 
@@ -27,25 +26,8 @@ if($_SESSION['role'] ==2 || $_SESSION['role']==3){
 
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Admin <?php echo $_SESSION['office'] . '   '  ?> Dashboard</h2>
-                            <h5>Welcome <?php echo $_SESSION['userName'] ?> , Love to see you back. </h5>
-                        </div>
-
-
-                    </div>
-                    <?php if (isset($_GET['message'])) { ?>
-                        <div class="message">
-                            <h5>
-                                <p class="error"><?php echo $_GET['message']; ?></p>
-                            </h5>
-                            
-                        </div>
-                    <?php } ?>
+                    <?php include './includes/notify.php'; ?>
                     <!-- dont -->
-
-
                 </div>
                 <!-- /. ROW  -->
                 <div class="row">
@@ -161,16 +143,6 @@ if($_SESSION['role'] ==2 || $_SESSION['role']==3){
                                         <input class="form-control" name="name" placeholder="Material Name" />
 
                                     </div>
-                                    <!-- ClearanceName -->
-                                    <!--  -->
-
-                                    <!-- InCharge -->
-                                    <!-- <div class="form-group">
-
-                                        <input class="form-control" type="hidden" name="in_charge" value="<?php echo $_SESSION['id'] ?>" />
-
-                                    </div> -->
-                                    <!-- In Charge -->
                                     <!-- Available Quantity -->
                                     <div class="form-group">
 
@@ -203,11 +175,11 @@ if($_SESSION['role'] ==2 || $_SESSION['role']==3){
                     <!-- end one -->
                    <?php if ($_SESSION['role'] == 3) {?>
 
-                    <div class="row" style="margin-top: 25px;background-color:grey;padding:25px 10px">
+                    <div class="row container-fluid" style="margin-top: 25px;background-color:whitesmoke;padding:25px 10px; margin:2em 1em;">
                         <!-- office -->
                         <div class="col-md-6">
                            <form action="" method="POST">
-                           <h3 style="color: #fff;">Office Creation Form</h3>
+                           <h3>Office Creation Form</h3>
                             <div class="form-group">
                                 <input class="form-control" type="text" name="name" placeholder="Office Name" ?>
                             </div>
@@ -226,7 +198,7 @@ if($_SESSION['role'] ==2 || $_SESSION['role']==3){
                         <!-- Role Add Here -->
                         <div class="col-md-6">
                             <form action="" method="POST">
-                            <h3 style="color: #fff;">Role Creation Form</h3>
+                            <h3>Role Creation Form</h3>
                             <div class="form-group">
                             <div class="form-group">
                                 <input class="form-control" type="text" name="name" placeholder="Role Name" ?>
@@ -260,20 +232,14 @@ if($_SESSION['role'] ==2 || $_SESSION['role']==3){
                                 </select>
                             </div>
                             <button type="submit" name="add_role" class="btn btn-info btn-lg">Add role</button>
-
-
-                            </form>
-                             
-                            
+                            </form>      
                         </div>
-
-
                     </div>
-                    <div class="row" style="margin-top: 25px;background-color:grey;padding:25px 10px">
+                    <div class="row container-fluid" style="margin-top: 25px;background-color:whitesmoke;padding:25px 10px; margin:2em 1em;">
                         <!-- office -->
                         <div class="col-md-6">
                             <form action="" method="POST">
-                            <h3 style="color: #fff;">WorkPlace Creation Form</h3>
+                            <h3>WorkPlace Creation Form</h3>
                             <div class="form-group">
                                 <input class="form-control" type="number" min="1" name="building" placeholder="Building Number" ?>
                             </div>
@@ -294,7 +260,7 @@ if($_SESSION['role'] ==2 || $_SESSION['role']==3){
                         <div class="col-md-6">
                             <form action="" method="POST">
 
-                                <h3 style="color: #fff;">User Creation Form</h3>
+                                <h3>User Creation Form</h3>
                                 <div class="form-group">
                                     <label>Select User Role</label>
                                     <select class="form-control" name="role">

@@ -13,7 +13,6 @@ if (!isset($_SESSION['id'])) {
   include "../controller/updateMaterialController.php"
 
 ?>
-
     <!DOCTYPE html>
     <html>
 
@@ -26,24 +25,8 @@ if (!isset($_SESSION['id'])) {
 
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Admin <?php echo $_SESSION['office'] . '   '  ?> Dashboard</h2>
-                            <h5>Welcome <?php echo $_SESSION['userName'] ?> , Love to see you back. </h5>
-                        </div>
-                        
-
-                    </div>
-                    <?php if (isset($_GET['message'])) { ?>
-                        <div class="message">
-                            <h5>
-                                <p class="error"><?php echo $_GET['message']; ?></p>
-                            </h5>
-                            
-                        </div>
-                    <?php } ?>
+                    <?php include './includes/notify.php'; ?>
                     <!-- here -->
-
                     <div class="row">
                     <div class="col-md-8">
                             <div class="col-md-10">
@@ -88,12 +71,7 @@ if (!isset($_SESSION['id'])) {
                         </div>
                     </div>
                 </div>
-
             </div>
-            <!-- /. ROW  -->
-            
-            <!-- /. ROW  -->
-            
         </div>
         <!-- /. ROW  -->
         </div>
@@ -103,7 +81,6 @@ if (!isset($_SESSION['id'])) {
         </div>
         <!-- /. WRAPPER  -->
     </body>
-
     </html>
 <?php } else{
     header("Location:../login.php?error=Trying to Access Unaoutorized Page!");
