@@ -4,6 +4,8 @@ include "../db.inc.php";
 
 session_start();
 
+$identifier = "is_material";
+
 if (!isset($_SESSION['id'])) {
     header("Location:../login.php?error=Login Here First!");
 }if($_SESSION['role'] ==2 || $_SESSION['role']==3){
@@ -61,55 +63,12 @@ include "../controller/materialController.php";
                     </button>
                     <a class="navbar-brand" href="index.html">You are <?php echo $_SESSION['user_role'] ?></a>
                 </div>
-                <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office'] . '   '  ?> </a> <a href="./logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+                <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;"> 
+                <a style="margin-right: 25px;"><?php echo $_SESSION['office'] . '   '  ?> </a> <a href="./logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
             </nav>
-            <!-- /. NAV TOP  -->
-            <nav class="navbar-default navbar-side" role="navigation">
-                <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
-                        <li class="text-center">
-                            <img src="../img/find_user.png" class="user-image img-responsive" />
-                        </li>
-
-
-                        <li>
-                            <a class="active-menu" href="./index.php"><i class="fa fa-dashboard fa-3x"></i>Home</a>
-                        </li>
-                        <!-- Admins Only -->
-                        <?php if($_SESSION['role'] ==3 || $_SESSION['role'] == 2) {?>
-
-                        <li>
-                            <a href="./addClerance.php"><i class="fa fa-desktop fa-3x"></i>Add Clearances</a>
-                        </li>
-                        <li>
-                            <a href="./index.php"><i class="fa fa-bar-chart-o fa-3x"></i> View Clearance Details</a>
-                        </li>
-                        <li>
-                            <a href="./index.php"><i class="fa fa-table fa-3x"></i>Update Clearances</a>
-                        </li>
-                        
-                        <li>
-                            <a href="./materials.php"><i class="fa fa-square-o fa-3x"></i> Available Materials</a>
-                        </li><?php }?>
-                        <!-- Admins Only -->
-
-                        <li>
-                            <a href="./sendFeedback.php"><i class="fa fa-qrcode fa-3x"></i>sendFeedback</a>
-                        </li>
-                       
-                      
-
-
-
-                    </ul>
-
-                </div>
-
-            </nav>
-            <!-- /. NAV SIDE  -->
+            
+            <?php include './navbar.php'; ?>
+            
             <div id="page-wrapper">
                 <div id="page-inner">
                     <div class="row">
@@ -166,21 +125,20 @@ font-size: 16px;"> <a style="margin-right: 25px;"><?php echo $_SESSION['office']
                                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                                     $count += 1;
                                                             ?>
-
-                                                                    <tr>
-                                                                        <td><?php echo $count; ?></td>
-                                                                        <td><?php echo $row['name'] ?></td>
-                                                                        <td><?php echo $row['available_quantity'] ?></td>
-                                                                        <td><?php echo $_SESSION['office'] . ' office' ?></td>
-                                                                        <td><?php echo $row['date'] ?></td>
-                                                                        <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-                                                                        <input type="hidden" name="name" value="<?php echo $row['name'] ?>">
-                                                                        <input type="hidden" name="quantity" value="<?php echo $row['available_quantity'] ?>">
-                                                                        <input type="hidden" name="office" value="<?php echo $row['office'] ?>">
-                                                                        <input type="hidden" name="desc" value="<?php echo $row['description'] ?>">
-                                                                        <input type="hidden" name="dt" value="<?php echo $row['date'] ?>">
-                                                                        <td><a href="./updateMaterial.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;" name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a><button name="view_detail_1" type="submit" class="btn btn-primary"><i class="fa fa-edit "></i> View Detail</button> <button name="delete_m" type="submit" class="btn btn-danger"><i class="fa fa-edit "></i>delete</button> </td>
-                                                                    </tr>
+                                                                <tr>
+                                                                    <td><?php echo $count; ?></td>
+                                                                    <td><?php echo $row['name'] ?></td>
+                                                                    <td><?php echo $row['available_quantity'] ?></td>
+                                                                    <td><?php echo $_SESSION['office'] . ' office' ?></td>
+                                                                    <td><?php echo $row['date'] ?></td>
+                                                                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                                                                    <input type="hidden" name="name" value="<?php echo $row['name'] ?>">
+                                                                    <input type="hidden" name="quantity" value="<?php echo $row['available_quantity'] ?>">
+                                                                    <input type="hidden" name="office" value="<?php echo $row['office'] ?>">
+                                                                    <input type="hidden" name="desc" value="<?php echo $row['description'] ?>">
+                                                                    <input type="hidden" name="dt" value="<?php echo $row['date'] ?>">
+                                                                    <td><a href="./updateMaterial.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;" name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a><button name="view_detail_1" type="submit" class="btn btn-primary"><i class="fa fa-edit "></i> View Detail</button> <button name="delete_m" type="submit" class="btn btn-danger"><i class="fa fa-edit "></i>delete</button> </td>
+                                                                </tr>
                                                             <?php }
                                                             } ?>
 
