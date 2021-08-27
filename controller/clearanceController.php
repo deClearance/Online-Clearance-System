@@ -34,4 +34,24 @@ if (isset($_POST['done'])) {
 }
 
 
+
+// Revoke Approval 
+if (isset($_POST['approve'])) {
+    $state = $_POST['completed'];
+    $idn = $_POST['idn'];
+    print_r($state);
+    if($state == 0){$state =1;}else{$state = 0;}
+    print_r($state);
+
+    $sql = "UPDATE `clearance_list` SET completed = $state WHERE id = $idn ";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("Location:../pages/clearanceList.php?error=Clearance Successfully Completed");
+    } else {
+        header("Location:../pages/clearanceList.php?error=Unabel To Complete Clearance Sorry!");
+
+    }
+}
+
+
 ?>

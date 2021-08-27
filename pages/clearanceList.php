@@ -22,7 +22,7 @@ include "../controller/clearanceController.php";
 
     <body>
         <div id="wrapper">
-            <?php include_once './includes/navbar.php'; ?>
+            <?php include './includes/navbar.php'; ?>
             <div id="page-wrapper">
                 <div id="page-inner">
                     <?php include './includes/notify.php'; ?>

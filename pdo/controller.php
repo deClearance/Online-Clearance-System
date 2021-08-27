@@ -63,6 +63,16 @@ function findUser($user_id){
 }
 
 
+function listTodo($office, $user_id){
+    global $pdo;
+    $sql = "SELECT * FROM `todos` where office = :office && `incharge` = :user_id ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['office'=>$office, 'user_id'=>$user_id]);
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
+
 
 
 //  TODO

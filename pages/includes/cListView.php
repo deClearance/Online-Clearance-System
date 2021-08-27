@@ -53,9 +53,16 @@
                                 <input type="hidden" name="desc" value="<?php echo $row['description'] ?>">
                                 <input type="hidden" name="dt" value="<?php echo $row['date_created'] ?>">
                                 <td>
-                                    <button name="view_detail_1" type="submit" class="btn btn-primary"><i class="fa fa-edit "></i> View Detail</button> 
-                                    <button name="approve" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Approve</button>                                                                    <button name="delete" type="submit" class="btn btn-danger"><i class="fa fa-pencil"></i> Delete</button><a href="./updateClearance.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;"
-                                        name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a></td>
+                                    <button name="view_detail_1" type="submit" class="btn btn-primary">
+                                        <i class="fa fa-edit "></i> View Detail
+                                    </button> 
+                                    <button name="approve" type="submit" class="btn btn-warning">
+                                        <i class="fa fa-pencil"></i> Approve
+                                    </button>                                                                    
+                                    <button name="delete" type="submit" class="btn btn-danger">
+                                        <i class="fa fa-pencil"></i> Delete
+                                    </button>
+                                    <a href="./updateClearance.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;" name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a></td>
                             </tr>
                             <?php }
                     } ?>

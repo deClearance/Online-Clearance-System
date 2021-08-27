@@ -20,7 +20,7 @@ if (!isset($_SESSION['id'])) {
     <body>
         <div id="wrapper">
 
-            <?php include_once './includes/navbar.php' ?>
+            <?php include './includes/navbar.php' ?>
 
             <div id="page-wrapper">
                 <div id="page-inner">
@@ -170,17 +170,16 @@ if (!isset($_SESSION['id'])) {
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="panel back-dash">
                                 <i class="fa fa-tasks fa-3x"></i><strong> &nbsp; Todo List</strong>
-
                                 <?php
                                 $office = $_SESSION['office_id'];
                                 $user_id =  $_SESSION['id'];
-                                // echo $office;
-                                $sql = "SELECT * FROM `todos` where office = $office and `incharge` = $user_id ";
-                                $result = mysqli_query($conn, $sql);
-                                $remaning = $result->num_rows;
-                                if ($result->num_rows > 0) {
+                                // $sql = "SELECT * FROM `todos` where office = $office and `incharge` = $user_id ";
+                                // $result = mysqli_query($conn, $sql);
+                                $result = listTodo($office, $user_id);
+                                $remaning = count($result);
+                                if ($remaning > 0) {
                                     $count = 0;
-                                    while ($row = mysqli_fetch_assoc($result)) {
+                                    foreach($result as $row) {
                                 ?>
                                     <div class="row" style="background-color: whitesmoke; margin:5px 5px;border-radius:5px; color:black;">
                                         <div class="col-sm-3" >
@@ -340,7 +339,7 @@ if (!isset($_SESSION['id'])) {
                         <section id="remaining-clearance">
 
                             <div class="panel panel-default">
-                                <?php include_once './includes/cListView.php'; ?>
+                                <?php include './includes/cListView.php'; ?>
                             </div>
                     </div>
                     </section>
@@ -419,7 +418,7 @@ if (!isset($_SESSION['id'])) {
                                                 if ($row['completed'] == 0) {
                                                     echo " btn-warning ";
                                                 } else {
-                                                    echo "btn-primary ";
+                                                    echo " btn-success ";
                                                 }
                                                 ?>"><i class="fa fa-check"></i>
                                                                 <?php
