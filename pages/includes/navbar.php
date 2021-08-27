@@ -1,4 +1,7 @@
-<?php //$identifier = ''; ?>
+<?php 
+    //$identifier = ''; 
+    include_once  './../pdo/controller.php';
+?>
 <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">

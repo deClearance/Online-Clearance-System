@@ -1,14 +1,15 @@
 <?php 
 
+include_once './../pdo/controller.php';
 // update Material
 
 if (isset($_POST['update_material'])) {
-    // print_r("update_clearance");
+
     $name = $_POST['name'];
     $quantity = $_POST['quantity'];
     $desc = $_POST['desc'];
     $id = $_POST['id'];
-    // print_r($id);
+
     if (empty($quantity) || empty($name) || empty($id) || empty($desc)) {
         header("Location:../pages/updateMaterial.php?message=Please Fill Empty Fields First Please!&id=$id");
     } else {
@@ -25,18 +26,10 @@ if (isset($_POST['update_material'])) {
 }
 
 
-
-
-
-
-   
 if(isset($_GET['id'])){
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM material where id =$id";
-    $result = mysqli_query($conn,$sql);
-    if($result ->num_rows >0){
-        $row = mysqli_fetch_assoc($result);
-        
+    $result = getAllMaterials($_GET);
+    if(count($result) > 0){
+        $row = $result;
     }
 }
 

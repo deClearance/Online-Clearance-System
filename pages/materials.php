@@ -140,19 +140,19 @@ include "../controller/materialController.php";
 
                                             <div class="tab-content">
                                                 <div class="tab-pane fade" id="home-pills">
-                                                    <h4>description</h4>
+                                                    <!-- <h4>description</h4> -->
                                                     <p>Noting TO show Here Select one First</p>
                                                 </div>
                                                 <div class="tab-pane fade" id="profile-pills">
-                                                    <h4>Status</h4>
+                                                    <!-- <h4>Status</h4> -->
                                                     <p>Noting TO show Here Select one First</p>
                                                 </div>
                                                 <div class="tab-pane fade" id="messages-pills">
-                                                    <h4>Date Created</h4>
+                                                    <!-- <h4>Date Created</h4> -->
                                                     <p>Noting TO show Here Select one First</p>
                                                 </div>
                                                 <div class="tab-pane fade active in" id="settings-pills">
-                                                    <h4>InCharge</h4>
+                                                    <!-- <h4>InCharge</h4> -->
                                                     <p>Noting TO show Here Select one First</p>
                                                 </div>
                                             </div>

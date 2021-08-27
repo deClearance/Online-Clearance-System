@@ -15,15 +15,9 @@
                 </thead>
                 <tbody>
                     <form action="" method="POST">
-
                         <?php
-
-                        include './../pdo/controller.php';
-
-
-                    $office = $_SESSION['office_id'];
-
-                    $result = cList($office);
+                        $office = $_SESSION['office_id'];
+                        $result = cList($office);
                     if (count($result) > 0) {
                         $count = 0;
                         foreach($result as $row){
