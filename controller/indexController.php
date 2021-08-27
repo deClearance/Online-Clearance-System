@@ -43,6 +43,7 @@
     // Handle Detail
     $detail_1 = false;
     if (isset($_POST['view_detail_1'])) {
+        // header("Location:../pages/index.php#remaining-clearance");
         $detail_1 = true;
         // print_r("view_detail_1");
         $item_v1 = $_POST['id'];
@@ -52,6 +53,7 @@
         $comp = $_POST['completed'];
         $desc = $_POST['desc'];
         $created = $_POST['dt'];
+        
         // print_r($it_name);
     }
 

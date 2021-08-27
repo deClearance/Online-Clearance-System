@@ -12,7 +12,6 @@ if (!isset($_SESSION['id'])) {
 
    include "../controller/indexController.php";
 ?>
-
     <!DOCTYPE html>
     <html>
 
@@ -28,7 +27,6 @@ if (!isset($_SESSION['id'])) {
                     <div class="row">
                         <div class="col-md-7">
                             <h2>Admin <?php echo $_SESSION['office'] . '   '  ?> Dashboard</h2>
-                            <!-- <h5>Welcome <?php echo $_SESSION['userName'] ?> , Love to see you back. </h5> -->
                         </div>
                         <div class="col-sm-1" style="margin-top: 15px;">
                             <button type="button" class="btn btn-info btn-circle">
@@ -100,7 +98,7 @@ if (!isset($_SESSION['id'])) {
                         <div class="col-md-3 col-sm-6 col-xs-6">
                             <div class="panel panel-back noti-box">
                                 <span class="icon-box bg-color-blue set-icon">
-                                    <i class="fa fa-bell-o"></i>
+                                    <i class="fa fa-check"></i>
                                 </span>
                                 <div class="text-box">
                                     <p class="main-text">
@@ -108,7 +106,7 @@ if (!isset($_SESSION['id'])) {
                                             $sql = "SELECT * FROM `clearance_list` where office = $office and `approved` = 1 ";
                                             $result = mysqli_query($conn, $sql);
                                             echo $result->num_rows;
-                                        ?> approved</p>
+                                        ?> Approved</p>
                                     <p class="text-muted">Approved Clearances</p>
                                 </div>
                             </div>
@@ -116,7 +114,7 @@ if (!isset($_SESSION['id'])) {
                         <div class="col-md-3 col-sm-6 col-xs-6">
                             <div class="panel panel-back noti-box">
                                 <span class="icon-box bg-color-brown set-icon">
-                                    <i class="fa fa-rocket"></i>
+                                    <i class="fa fa-question"></i>
                                 </span>
                                 <div class="text-box">
                                     <p class="main-text">
@@ -136,7 +134,6 @@ if (!isset($_SESSION['id'])) {
                     <!-- /. ROW  -->
                     <hr />
                     <div class="row">
-
                         <!-- Admins Only -->
                         <?php if($_SESSION['role'] ==3 || $_SESSION['role'] == 2) {?>
                         <div class="col-md-6 col-sm-12 col-xs-12">
@@ -152,12 +149,11 @@ if (!isset($_SESSION['id'])) {
                                         echo $result->num_rows;
                                         ?> Clearances are Available </p>
                                     <p class="text-muted">Add Clearances and View Details Here</p>
-                                    <a href="./addClerance.php" class="btn btn-primary"><i class="fa fa-edit "></i> Add Clerances</a>
+                                    <a href="./addClerance.php" class="btn btn-primary"><i class="fa fa-edit "></i> Add Clearances</a>
                                     <?php
                                     if ($_SESSION['role'] == 3) {
-                                        echo "<a href='./clearanceList.php' class='btn btn-warning'><i class='fa fa-pencil'></i> View Clerance List</a>  ";
+                                        echo "<a href='./clearanceList.php' class='btn btn-warning'><i class='fa fa-pencil'></i> View Clearance List</a>  ";
                                     }
-
                                     ?>
                                         <a href="./materials.php" class="btn btn-success"><i class="fa fa-edit "></i> View Materials</a>
                                         </td>
@@ -172,7 +168,7 @@ if (!isset($_SESSION['id'])) {
                         <!-- Admins Only -->
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="panel back-dash">
-                                <i class="fa fa-dashboard fa-3x"></i><strong> &nbsp; Todo List</strong>
+                                <i class="fa fa-tasks fa-3x"></i><strong> &nbsp; Todo List</strong>
 
                                 <?php
                                 $office = $_SESSION['office_id'];
@@ -181,23 +177,20 @@ if (!isset($_SESSION['id'])) {
                                 $sql = "SELECT * FROM `todos` where office = $office and `incharge` = $user_id ";
                                 $result = mysqli_query($conn, $sql);
                                 $remaning = $result->num_rows;
-
-                                //  print_r($result);
                                 if ($result->num_rows > 0) {
                                     $count = 0;
-                                    // print_r($result);
                                     while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
-                                    <div class="row" style="background-color: #d2322d; margin:5px 5px;border-radius:5px;">
-                                        <div class="col-sm-3">
-
-                                            <p class="text-muted">
-                                                <?php echo $row['content'] ?> </p>
+                                    <div class="row" style="background-color: whitesmoke; margin:5px 5px;border-radius:5px; color:black;">
+                                        <div class="col-sm-3" >
+                                            <p style="color: black;">
+                                                <?php echo $row['content'] ?> 
+                                            </p>
 
                                         </div>
                                         <div class="col-sm-3">
 
-                                            <p class="text-muted" style="color: #39b3d7;">
+                                            <p style="color: black;">
                                                 <?php
                                                 if ($row['completed'] == 0) {
                                                     echo "Ongoing Task!";
@@ -206,41 +199,31 @@ if (!isset($_SESSION['id'])) {
                                                 }
                                                 ?>
                                             </p>
-
                                         </div>
                                         <div class="col-sm-3">
-                                            <p class="text-muted">
+                                            <p style="color: black;">
                                                 <?php echo "Date:" . $row['date'] ?> </p>
-
                                         </div>
-
                                         <form action="" method="POST">
                                             <input class="form-control" name="id" type="hidden" value="<?php echo $row['id'] ?>" />
                                             <input class="form-control" name="state" type="hidden" value="<?php echo $row['completed'] ?>" />
-
-
                                             <div class="col-sm-3" style="padding-top: 8px;">
                                                 <?php
 
                                                     if ($row['completed'] == 0) {
                                                         echo "<button type='submit' name='todo' class='btn btn-warning btn-sm' >complete</button>";
                                                     } else {
-                                                        echo "<button type='submit' name='todo' class='btn btn-info btn-sm' >Renew todo</button>";
+                                                        echo "<button type='submit' name='todo' class='btn btn-info btn-sm' >Renew</button>";
                                                     }
-
                                                     ?>
                                             </div>
-
-                                            <button style="margin-left:15px;" type='submit' name='delete_todo' class='btn btn-success btn-sm'>delete</button>
+                                            <button style="margin-left:15px;" type='submit' name='delete_todo' class='btn btn-danger btn-sm'>delete</button>
                                         </form>
                                     </div>
                                     <?php }
                                 } ?>
-
                             </div>
-
                         </div>
-
                         <div class="col-md-6 col-sm-12 col-xs-12 ">
                             <div class="panel ">
                                 <div class="main-temp-back">
@@ -269,20 +252,14 @@ if (!isset($_SESSION['id'])) {
                             </div>
                             <div class="panel panel-back noti-box">
                                 <span class="icon-box bg-color-green set-icon">
-                                    <i class="fa fa-desktop"></i>
+                                    <i class="fa fa-tasks"></i>
                                 </span>
                                 <div class="text-box">
                                     <!-- Add Task -->
                                     <form action="" method="POST">
-
                                         <div class="form-group">
 
-                                            <input class="form-control" name="name" type="text" placeholder="task Name" />
-
-                                        </div>
-                                        <div class="form-group">
-
-                                            <input class="form-control" name="content" type="text" placeholder="task content" />
+                                            <textarea class="form-control" name="content" type="text" placeholder="task content" rows="2"></textarea>
 
                                         </div>
                                         <button name="add_todo" type="submit" class="btn btn-primary">Add Task</button>
@@ -294,7 +271,7 @@ if (!isset($_SESSION['id'])) {
                         </div>
                         <!-- Send Message -->
 
-                        <div class="col-md-6 col-sm-12 col-xs-12 ">
+                        <div class="col-md-6 col-sm-12 col-xs-12 shadow-lg">
                             <div class="panel ">
                                 <div class="main-temp-back">
                                     <div class="panel-body">
@@ -306,7 +283,6 @@ if (!isset($_SESSION['id'])) {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="panel panel-back noti-box">
                                 <span class="icon-box bg-color-red set-icon">
@@ -329,9 +305,6 @@ if (!isset($_SESSION['id'])) {
 
                                                     print_r($result);
                                                     while ($row = mysqli_fetch_assoc($result)) {
-
-
-
                                                 ?>
                                                         <option value="<?php echo $row['id'] ?>"><?php echo $row['full_name'] ?></option>
                                                     <?php }
@@ -366,186 +339,14 @@ if (!isset($_SESSION['id'])) {
                         <section id="remaining-clearance">
 
                             <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Remaining Clerances
-                                    <div class="panel-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Clerance Name</th>
-                                                        <th>Clerance Owner</th>
-                                                        <th>In_charge</th>
-                                                        <th>Date Created.</th>
-                                                        <th>Change Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <form action="" method="POST">
-
-                                                        <?php
-                                                    $office = $_SESSION['office_id'];
-                                                    // echo $office;
-                                                    $sql = "SELECT * FROM `clearance_list` where office = $office and `approved` = 0 ";
-                                                    $result = mysqli_query($conn, $sql);
-                                                    $remaning = $result->num_rows;
-
-                                                    //  print_r($result);
-                                                    if ($result->num_rows > 0) {
-                                                        $count = 0;
-                                                        // print_r($result);
-                                                        while ($row = mysqli_fetch_assoc($result)) {
-                                                            $owner = $row['clearance_owner'];
-
-
-                                                            $count += 1;
-                                                            $sql2 = "SELECT * FROM `users` where id = $owner ";
-                                                            $result2 = mysqli_query($conn, $sql2);
-
-                                                            $data = mysqli_fetch_assoc($result2);
-
-                                                    ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <?php echo $count; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $row['name'] ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $data['full_name'] ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $_SESSION['office'] . ' office' ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $row['date_created'] ?>
-                                                                </td>
-                                                                <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-                                                                <input type="hidden" name="name" value="<?php echo $row['name'] ?>">
-                                                                <input type="hidden" name="full_name" value="<?php echo $data['full_name'] ?>">
-                                                                <input type="hidden" name="completed" value="<?php echo $row['completed'] ?>">
-                                                                <input type="hidden" name="app" value="<?php echo $row['approved'] ?>">
-                                                                <input type="hidden" name="desc" value="<?php echo $row['description'] ?>">
-                                                                <input type="hidden" name="dt" value="<?php echo $row['date_created'] ?>">
-                                                                <td><button name="view_detail_1" type="submit" class="btn btn-primary"><i class="fa fa-edit "></i> View Detail</button> <button name="approve" type="submit" class="btn btn-warning"><i class="fa fa-pencil"></i> Approve</button>                                                                    <button name="delete" type="submit" class="btn btn-danger"><i class="fa fa-pencil"></i> Delete</button><a href="./updateClearance.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;"
-                                                                        name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a></td>
-                                                            </tr>
-                                                            <?php }
-                                                    } ?>
-
-                                                    </form>
-                                                </tbody>
-                                            </table>
-
-                                            <!--  -->
-                                            <?php
-                                        if ($detail_1) {
-
-                                        ?>
-                                                Detail Tabs
-
-                                                <div class="panel-body">
-                                                    <ul class="nav nav-pills">
-                                                        <li class=""><a href="#home-pills" data-toggle="tab">Description</a>
-                                                        </li>
-                                                        <li class=""><a href="#profile-pills" data-toggle="tab">Status</a>
-                                                        </li>
-                                                        <li class=""><a href="#messages-pills" data-toggle="tab">Date Created</a>
-                                                        </li>
-                                                        <li class="active"><a href="#settings-pills" data-toggle="tab">InCharge</a>
-                                                        </li>
-                                                    </ul>
-
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane fade" id="home-pills">
-                                                            <h4>Description</h4>
-                                                            <p>
-                                                                <?php echo $desc ?>.</p>
-                                                            <p>
-                                                                <?php echo "Clerance Owner " . " " . $ful_n ?>.</p>
-                                                            <p>
-                                                                <?php echo "Clerance Name " . " " . $it_name ?>.</p>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="profile-pills">
-                                                            <h4>Clerance Status</h4>
-                                                            <p>
-                                                                <?php
-                                                            if ($comp == 0 && $app == 1) {
-                                                                echo "<h4 style='color:yellow;'>you have Approved it , Waiting Supper Admin Approval!</h4>";
-                                                            }
-                                                            if ($comp == 1 && $app == 1) {
-                                                                echo "<h4 style='color:green'>clerance Approval Process Is Completed!</h4>";
-                                                            }
-
-                                                            if ($app ==  0) {
-                                                                echo "<h4 style='color:blue' >Still Waiting For Your Approval ,Please Approve As possible As you Can!</h4>";
-                                                            }
-
-                                                            ?>.</p>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="messages-pills">
-                                                            <h4>Clerance Creation Date</h4>
-                                                            <p>
-                                                                <?php echo $created ?>.</p>
-                                                        </div>
-                                                        <div class="tab-pane fade active in" id="settings-pills">
-                                                            <h4>InCharge Of Controlling this Clerance and Management</h4>
-                                                            <p>
-                                                                <?php echo $_SESSION['office'] . ' office' ?>.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                        <?php } else { ?>
-
-
-                                        <div class="panel-body">
-                                            <ul class="nav nav-pills">
-                                                <li class=""><a href="#home-pills" data-toggle="tab">Description</a>
-                                                </li>
-                                                <li class=""><a href="#profile-pills" data-toggle="tab">Status</a>
-                                                </li>
-                                                <li class=""><a href="#messages-pills" data-toggle="tab">Date Created</a>
-                                                </li>
-                                                <li class="active"><a href="#settings-pills" data-toggle="tab">InCharge</a>
-                                                </li>
-                                            </ul>
-
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade" id="home-pills">
-                                                    <h4>description</h4>
-                                                    <p>Noting TO show Here Select one First</p>
-                                                </div>
-                                                <div class="tab-pane fade" id="profile-pills">
-                                                    <h4>Status</h4>
-                                                    <p>Noting TO show Here Select one First</p>
-                                                </div>
-                                                <div class="tab-pane fade" id="messages-pills">
-                                                    <h4>Date Created</h4>
-                                                    <p>Noting TO show Here Select one First</p>
-                                                </div>
-                                                <div class="tab-pane fade active in" id="settings-pills">
-                                                    <h4>InCharge</h4>
-                                                    <p>Noting TO show Here Select one First</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php } ?>
-     
-                                </div>
-
+                                <?php include './includes/cListView.php'; ?>
                             </div>
                     </div>
                     </section>
                     <?php }?>
                     <!-- Admins Only -->
                 </div>
-
             </div>
-
             <!-- /. ROW  -->
             <div class="row">
                 <!-- here notification -->
@@ -556,15 +357,15 @@ if (!isset($_SESSION['id'])) {
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Approved Clerances
+                            Approved Clearances
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Clerance Name</th>
-                                                <th>Clerance Owner</th>
+                                                <th>Clearance Name</th>
+                                                <th>Clearance Owner</th>
                                                 <th>In_charge</th>
                                                 <th>Date Created.</th>
                                                 <th>Super Admin Approval Status</th>
@@ -572,13 +373,10 @@ if (!isset($_SESSION['id'])) {
                                         </thead>
                                         <tbody>
                                             <form action="" method="POST">
-
                                                 <?php
                                                 $office = $_SESSION['office_id'];
-                                                // echo $office;
                                                 $sql = "SELECT * FROM `clearance_list` where office = $office and `approved` = 1 ";
                                                 $result = mysqli_query($conn, $sql);
-
                                                 if ($result->num_rows > 0) {
                                                     $count = 0;
                                                     // print_r($result);
@@ -590,7 +388,6 @@ if (!isset($_SESSION['id'])) {
 
                                                         $data = mysqli_fetch_assoc($result2);
                                                 ?>
-
                                                     <tr>
                                                         <td>
                                                             <?php echo $count; ?>
@@ -616,13 +413,12 @@ if (!isset($_SESSION['id'])) {
                                                         <input type="hidden" name="dt" value="<?php echo $row['date_created'] ?>">
                                                         <td><a href="./updateClearance.php?id=<?php echo $row['id'] ?>" style="margin:5px 15px;" name="update" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</a><button name="view_detail_1" type="submit"
                                                                 class="btn btn-primary"><i class="fa fa-edit "></i> View Detail</button> <button name="dis_approve" type="submit" class="btn btn-danger"><i class="fa fa-edit "></i>disApprove</button>
-                                                            <button class="btn
-                                             <?php
-                                                        if ($row['completed'] == 0) {
-                                                            echo " btn-warning ";
-                                                        } else {
-                                                            echo "btn-primary ";
-                                                        }
+                                                            <button class="btn<?php
+                                                if ($row['completed'] == 0) {
+                                                    echo " btn-warning ";
+                                                } else {
+                                                    echo "btn-primary ";
+                                                }
                                                 ?>"><i class="fa fa-check"></i>
                                                                 <?php
                                                                     if ($row['completed'] == 0) {
@@ -630,18 +426,15 @@ if (!isset($_SESSION['id'])) {
                                                                     } else {
                                                                         echo "Completed";
                                                                     }
-                                                                    ?>
-                                                                    </button>
+                                                                    ?></button>
                                                         </td>
                                                     </tr>
                                                     <?php }
                                                 } ?>
-
                                             </form>
                                         </tbody>
                                     </table>
                                 </div>
-
                                 <!--  -->
                             </div>
                         </div>
@@ -652,10 +445,8 @@ if (!isset($_SESSION['id'])) {
             <!-- /. ROW  -->
             <div class="row">
                 <!-- Admins Only -->
-                <?php if($_SESSION['role'] ==3 || $_SESSION['role'] == 2) {?>
-
+                <?php if($_SESSION['role'] == 3 || $_SESSION['role'] == 2) {?>
                 <div class="col-md-6 col-sm-12 col-xs-12">
-
                     <div class="chat-panel panel panel-default chat-boder chat-panel-head" style="margin:20px auto; ">
                         <div class="panel-heading">
                             <i class="fa fa-comments fa-fw"></i> Some Feedbacks From users For You
@@ -691,16 +482,13 @@ if (!isset($_SESSION['id'])) {
                                 </ul>
                             </div>
                         </div>
-
                         <div class="panel-body">
                             <ul class="chat-box">
-
                                 <?php
                                 $my_of = $_SESSION['office_id'];
                                 $sql = "SELECT * FROM `feedbacks` where to_office = $my_of ";
                                 $result = mysqli_query($conn, $sql);
                                 if ($result->num_rows) {
-
                                     while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
                                     <li class="left clearfix">
@@ -714,12 +502,9 @@ if (!isset($_SESSION['id'])) {
                                                         $sql = "SELECT * FROM `users` where id = $user";
                                                         $result = mysqli_query($conn, $sql);
                                                         $fn = mysqli_fetch_assoc($result);
-
-
                                                         echo  $fn['full_name'] ?></strong>
                                             <small class="pull-right text-muted">
                                                     <i class="fa fa-clock-o fa-fw"></i><?php echo $row['date'] ?></small>
-
                                             <p>
                                                 <?php echo  $row['content'] ?>
                                             </p>
@@ -727,28 +512,25 @@ if (!isset($_SESSION['id'])) {
                                     </li>
                                     <?php  }
                                 } ?>
-
                             </ul>
                         </div>
-
                     </div>
                     <?php }?>
                     <!-- Admins Only -->
-
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <di class="row">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                My Clerances
+                                My Clearances
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Clerance Name</th>
-                                                    <th>Clerance Owner</th>
+                                                    <th>Clearance Name</th>
+                                                    <th>Clearance Owner</th>
                                                     <th>In_charge</th>
                                                     <th>Date Created.</th>
                                                     <th>Super Admin Approval Status</th>
@@ -767,8 +549,6 @@ if (!isset($_SESSION['id'])) {
                                                         // print_r($result);
                                                         while ($row = mysqli_fetch_assoc($result)) {
                                                             $owner = $row['clearance_owner'];
-
-
                                                             $count += 1;
                                                             $sql2 = "SELECT * FROM `users` where id = $owner ";
                                                             $result2 = mysqli_query($conn, $sql2);
@@ -793,15 +573,11 @@ if (!isset($_SESSION['id'])) {
                                                             </td>
                                                             <td>
                                                                 <?php
-
                                                                     if ($row['completed'] == 0 || $row['approved'] == 0) {
                                                                         echo "<button class='btn btn-success btn-sm disabled'><i class='fa fa-edit'></i> Incomplete </button>";
                                                                     }
                                                                     ?>
-
                                                             </td>
-
-
                                                         </tr>
                                                         <?php }
                                                     } ?>
@@ -814,24 +590,19 @@ if (!isset($_SESSION['id'])) {
                             </div>
                         </div>
                 </div>
-                <div class="row" style="background-color: burlywood;">
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="margin:20px auto; background-color:burlywood;max-height:300px;overflow:scroll;padding:20px auto;">
+                <div class="row shadow" style="background-color: whitesmoke;">
+                    <div class="col-md-6 col-sm-12 col-xs-12 shadow" style="margin:20px auto; background-color:whitesmoke;max-height:300px;overflow:scroll;padding:20px auto;">
                         <div class="chat-panel panel panel-default chat-boder chat-panel-head" style="max-height: 300px;">
                             <div class="panel-heading">
                                 <i class="fa fa-comments fa-fw"></i> Messages
-
                             </div>
-
                             <div class="panel-body" style="background-color: #fff;">
                                 <ul class="chat-box">
-
                                     <?php
                                     $my_of = $_SESSION['id'];
-
                                     $sql = "SELECT * FROM `message` where to_user = $my_of ";
                                     $resultx = mysqli_query($conn, $sql);
                                     if ($resultx->num_rows) {
-
                                         while ($rm = mysqli_fetch_assoc($resultx)) {
                                     ?>
                                         <li class="left clearfix">
@@ -839,18 +610,14 @@ if (!isset($_SESSION['id'])) {
                                                     <img src="../img/3.png" alt="User" class="img-circle" />
                                                 </span>
                                             <div class="chat-body clearfix">
-
                                                 <strong><?php
                                                             $of = $rm['sender'];
                                                             $sql = "SELECT * FROM `users` where id = $of";
                                                             $result = mysqli_query($conn, $sql);
                                                             $fn = mysqli_fetch_assoc($result);
-
-                                                            
                                                             echo  $fn['full_name'] ?></strong>
                                                 <small class="pull-right text-muted">
                                                         <i class="fa fa-clock-o fa-fw"></i><?php echo $rm['date'] ?></small>
-
                                                 <p>
                                                     <?php echo  $rm['content'] ?>
                                                 </p>

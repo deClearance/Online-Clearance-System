@@ -31,14 +31,14 @@ if (!isset($_SESSION['id'])) {
                 <div class="row container-fluid" >
                     <!-- one -->
                     <!-- end one -->
-                    <div class="row" style="margin-top: 25px;background-color:grey;padding:25px 10px; display:flex; justify-content:center;">
+                    <div class="row" style="margin-top: 25px;background-color:whitesmoke;padding:25px 10px; display:flex; justify-content:center;">
                         <!-- office -->
                         <div class="col-md-6">
                             <form action="" method="POST">
-                                <h3 style="color: #fff;">Write a feedback</h3>
+                                <h3>Write a feedback</h3>
                                 <div class="form-group">
                                     <br>
-                                    <label style="color: #fff;">Choose Office</label>
+                                    <label>Choose Office</label>
                                     <select class="form-control" name="office">
                                         <?php
                                             $current = $_SESSION['id'];
