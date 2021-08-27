@@ -3,12 +3,12 @@
 // update Material
 
 if (isset($_POST['update_material'])) {
-    print_r("update_clearance");
+    // print_r("update_clearance");
     $name = $_POST['name'];
     $quantity = $_POST['quantity'];
     $desc = $_POST['desc'];
     $id = $_POST['id'];
-    print_r($id);
+    // print_r($id);
     if (empty($quantity) || empty($name) || empty($id) || empty($desc)) {
         header("Location:../pages/updateMaterial.php?message=Please Fill Empty Fields First Please!&id=$id");
     } else {

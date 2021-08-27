@@ -17,25 +17,22 @@
                     <form action="" method="POST">
 
                         <?php
+
+                        include './../pdo/controller.php';
+
+
                     $office = $_SESSION['office_id'];
-                    // echo $office;
-                    $sql = "SELECT * FROM `clearance_list` where office = $office and `approved` = 0 ";
-                    $result = mysqli_query($conn, $sql);
-                    $remaning = $result->num_rows;
 
-                    //  print_r($result);
-                    if ($result->num_rows > 0) {
+                    $result = cList($office);
+                    if (count($result) > 0) {
                         $count = 0;
-                        // print_r($result);
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        foreach($result as $row){
                             $owner = $row['clearance_owner'];
-
-
                             $count += 1;
-                            $sql2 = "SELECT * FROM `users` where id = $owner ";
-                            $result2 = mysqli_query($conn, $sql2);
+                            
+                            $data = userList($owner);
 
-                            $data = mysqli_fetch_assoc($result2);
+                            // $data = mysqli_fetch_assoc($result2);
 
                     ?>
                             <tr>
